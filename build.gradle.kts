@@ -1,3 +1,7 @@
+import org.intellij.jewel.workshop.build.patchRegistryFile
+import org.jetbrains.intellij.tasks.PrepareSandboxTask
+import java.nio.file.Paths
+
 plugins {
     kotlin("jvm") version "1.9.10"
     id("org.jetbrains.intellij") version "1.16.0"
@@ -30,8 +34,21 @@ dependencies {
     implementation(compose.desktop.windows_x64)
 }
 
-tasks.test {
-    useJUnitPlatform()
+tasks {
+    val enableNewUi by registering {
+        dependsOn(prepareSandbox)
+
+        // disable me to enable old ui :)
+        onlyIf { true }
+
+        doLast {
+            prepareSandbox.registryFile.get().patchRegistryFile()
+            prepareSandbox.lafFile.get().patchRegistryFile()
+        }
+    }
+    runIde {
+        dependsOn(enableNewUi)
+    }
 }
 
 kotlin {
@@ -46,3 +63,11 @@ kotlin {
         }
     }
 }
+
+val TaskProvider<PrepareSandboxTask>.registryFile
+    get() = flatMap { it.configDir }
+        .map { Paths.get(it).resolve("early-access-registry.txt").toFile() }
+
+val TaskProvider<PrepareSandboxTask>.lafFile
+    get() = flatMap { it.configDir }
+        .map { Paths.get(it).resolve("options/laf.xml").toFile() }
