@@ -6,6 +6,7 @@ build/
 
 ### IntelliJ IDEA ###
 .idea/
+!.idea/externalDependencies.xml
 
 ### Eclipse ###
 .apt_generated
@@ -30,4 +31,4 @@ bin/
 .vscode/
 
 ### Mac OS ###
-.DS_Store
+.DS_Store!/.idea/externalDependencies.xml
