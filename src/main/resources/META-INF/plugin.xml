@@ -1,0 +1,17 @@
+<idea-plugin>
+    <id>com.intellij.jewel.workshop</id>
+    <name>Jewel Workshop</name>
+    <description>Plugin for creating and editing Jewel components</description>
+    <version>1.0</version>
+    <vendor>JetBrains</vendor>
+
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Jewel Workshop"
+                    anchor="bottom"
+                    secondary="false"
+                    canCloseContents="true"
+                    icon="JewelIcons.ToolWindowIcon"
+                    factoryClass="com.intellij.jewel.workshop.JewelWorkshopToolWindowFactory"/>
+    </extensions>
+</idea-plugin>
