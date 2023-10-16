@@ -6,7 +6,8 @@ import nl.adaptivity.xmlutil.serialization.XML
 import java.io.File
 
 fun File.patchRegistryFile() {
-    val registry = readLines()
+    val registry = runCatching { readLines() }.getOrNull()
+        ?: emptyList()
 
     val indexOfExperimentalUi = registry.indexOf("ide.experimental.ui")
     val newRegistry = if (indexOfExperimentalUi >= 0) {
