@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.intellij.jewel.workshop.ui.preview.IntUiPreview
-import org.jetbrains.jewel.Text
+import org.jetbrains.jewel.ui.component.Text
 
 @Composable
 fun HelloCompose() {

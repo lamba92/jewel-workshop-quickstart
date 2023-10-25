@@ -7,17 +7,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import org.jetbrains.jewel.intui.standalone.IntUiTheme
+import org.jetbrains.jewel.foundation.theme.JewelTheme
+import org.jetbrains.jewel.intui.standalone.theme.darkThemeDefinition
+import org.jetbrains.jewel.intui.standalone.theme.lightThemeDefinition
 
 @Composable
 fun IntUiPreview(isDark: Boolean, content: @Composable BoxScope.() -> Unit) {
     val themeDefinition = if (isDark) {
-        IntUiTheme.darkThemeDefinition()
+        JewelTheme.darkThemeDefinition()
     } else {
-        IntUiTheme.lightThemeDefinition()
+        JewelTheme.lightThemeDefinition()
     }
     val background = if (isDark) themeDefinition.colorPalette.grey(2) else Color.White
-    IntUiTheme(themeDefinition) {
+    JewelTheme(themeDefinition) {
         Box(
             modifier = Modifier
                 .background(background)
